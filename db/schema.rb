@@ -32,18 +32,23 @@ ActiveRecord::Schema.define(version: 20141026161055) do
   create_table "collections", force: true do |t|
     t.string   "name"
     t.string   "image_url"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "collections", ["name"], name: "index_collections_on_name", using: :btree
+  add_index "collections", ["user_id"], name: "index_collections_on_user_id", using: :btree
 
   create_table "items", force: true do |t|
     t.string   "name"
     t.string   "image_url"
+    t.integer  "collection_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "items", ["collection_id"], name: "index_items_on_collection_id", using: :btree
 
   create_table "tags", force: true do |t|
     t.string   "name"

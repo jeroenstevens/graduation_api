@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
 
+  resources :tags
+  resources :items
+
+  resources :users do
+    resources :collections
+  end
+
+  resources :collections do
+    resources :items
+  end
+
+
   root 'tags#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,10 +1,3 @@
-GIT
-  remote: git://github.com/rails-api/active_model_serializers.git
-  revision: 462efc0ea5a309b40bab87c9cde85f2de31b53e3
-  specs:
-    active_model_serializers (0.10.0.pre)
-      activemodel (>= 4.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -107,7 +100,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_model_serializers!
   aws-sdk
   bcrypt
   jbuilder

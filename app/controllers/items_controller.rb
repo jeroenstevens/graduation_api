@@ -41,7 +41,7 @@ class ItemsController < ActionController::Base
   end
 
   def item_params
-    params.require(:item).permit(:name, :image_url);
+    params.require(:item).permit(:name, :image_url, :collection_id);
   end
 
 end

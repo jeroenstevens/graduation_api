@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     resources :items
   end
 
+  # Routing api key creation and deletion
+  post 'session' => 'session#create'
+  delete 'session' => 'session#destroy'
 
   root 'tags#index'
 

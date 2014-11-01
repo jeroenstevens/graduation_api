@@ -1,6 +1,6 @@
 class CreateCollections < ActiveRecord::Migration
   def change
-    create_table :collections do |t|
+    create_table :collections, id: :uuid do |t|
       t.string :name
       t.string :image_url
       t.integer :user_id

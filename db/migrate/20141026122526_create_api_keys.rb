@@ -1,7 +1,7 @@
 class CreateApiKeys < ActiveRecord::Migration
   def change
-    create_table :api_keys do |t|
-      t.references :user, index: true
+    create_table :api_keys, id: :uuid do |t|
+      t.uuid :user_id
       t.string :access_token
       t.string :scope
       t.datetime :expires_at

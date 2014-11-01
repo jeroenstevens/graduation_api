@@ -15,9 +15,10 @@ ActiveRecord::Schema.define(version: 20141101135349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
-  create_table "api_keys", force: true do |t|
-    t.integer  "user_id"
+  create_table "api_keys", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid     "user_id"
     t.string   "access_token"
     t.string   "scope"
     t.datetime "expires_at"
@@ -27,9 +28,8 @@ ActiveRecord::Schema.define(version: 20141101135349) do
   end
 
   add_index "api_keys", ["access_token"], name: "index_api_keys_on_access_token", unique: true, using: :btree
-  add_index "api_keys", ["user_id"], name: "index_api_keys_on_user_id", using: :btree
 
-  create_table "collections", force: true do |t|
+  create_table "collections", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "name"
     t.string   "image_url"
     t.integer  "user_id"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20141101135349) do
   add_index "collections", ["name"], name: "index_collections_on_name", using: :btree
   add_index "collections", ["user_id"], name: "index_collections_on_user_id", using: :btree
 
-  create_table "items", force: true do |t|
+  create_table "items", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "name"
     t.string   "image_url"
     t.integer  "collection_id"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20141101135349) do
 
   add_index "items", ["collection_id"], name: "index_items_on_collection_id", using: :btree
 
-  create_table "tags", force: true do |t|
+  create_table "tags", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "name"
     t.integer  "user_id"
     t.integer  "tag_id"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20141101135349) do
   add_index "tags", ["tag_id"], name: "index_tags_on_tag_id", using: :btree
   add_index "tags", ["user_id"], name: "index_tags_on_user_id", using: :btree
 
-  create_table "users", force: true do |t|
+  create_table "users", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "username"
     t.string   "email"
     t.string   "password_digest"
